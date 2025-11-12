@@ -1,0 +1,6 @@
+maintient appuyer le btn du milieu pou rotate
+maintient appuyer le btn du milieu et shift pour deplacer la camera
+scroll zoom in/out
+
+maintient appuyer le clic droit et zqsd pou deplacer rotate en freemode
+et shift pour aller plus vite

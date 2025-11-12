@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://4bhhh3xgdy85"]
+[gd_scene load_steps=10 format=3 uid="uid://4bhhh3xgdy85"]
 
 [ext_resource type="Script" uid="uid://eqkw58vjpe5i" path="res://scripts/player.gd" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://d0w7ewobv4lff" path="res://scenes/mur.tscn" id="2_w7c3h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -47,12 +48,37 @@ transform = Transform3D(1, 0, 0, 0, 0.78459245, 0.6200119, 0, -0.6200119, 0.7845
 
 [node name="Environnement" type="Node3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environnement"]
+[node name="Sol" type="StaticBody3D" parent="Environnement"]
 collision_layer = 2
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environnement/StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environnement/Sol"]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_w7c3h")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environnement/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environnement/Sol"]
 shape = SubResource("WorldBoundaryShape3D_w8frs")
+
+[node name="Murs" type="Node3D" parent="Environnement"]
+
+[node name="Mur" parent="Environnement/Murs" instance=ExtResource("2_w7c3h")]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -10)
+
+[node name="Mur2" parent="Environnement/Murs" instance=ExtResource("2_w7c3h")]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 9.397628)
+
+[node name="Mur3" parent="Environnement/Murs" instance=ExtResource("2_w7c3h")]
+transform = Transform3D(-8.742278e-07, 0, 1, 0, 1, 0, -20, 0, -4.371139e-08, 9.478408, 0.5, -0.0101492405)
+
+[node name="Mur4" parent="Environnement/Murs" instance=ExtResource("2_w7c3h")]
+transform = Transform3D(-8.742278e-07, 0, 1, 0, 1, 0, -20, 0, -4.371139e-08, -9.866593, 0.5, -0.0101492405)
+
+[node name="Obstacles" type="Node3D" parent="Environnement"]
+
+[node name="Mur" parent="Environnement/Obstacles" instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 5.075285)
+
+[node name="Mur2" parent="Environnement/Obstacles" instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.800865, 0.5, -3.6275272)
+
+[node name="Mur3" parent="Environnement/Obstacles" instance=ExtResource("2_w7c3h")]
+transform = Transform3D(3.535534, 0, 0.70710677, 0, 1, 0, -3.535534, 0, 0.70710677, 2.0536928, 0.5, -3.6275272)
