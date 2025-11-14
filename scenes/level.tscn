@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://4bhhh3xgdy85"]
+[gd_scene load_steps=15 format=3 uid="uid://4bhhh3xgdy85"]
 
 [ext_resource type="Script" uid="uid://eqkw58vjpe5i" path="res://scripts/player.gd" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://d0w7ewobv4lff" path="res://scenes/mur.tscn" id="2_w7c3h"]
+[ext_resource type="Material" uid="uid://cuwk4rjt1m26s" path="res://materials/Minimap.tres" id="3_w8frs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -22,6 +23,22 @@ tonemap_mode = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_w7c3h"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_w8frs"]
+
+[sub_resource type="Environment" id="Environment_w8frs"]
+background_mode = 1
+background_color = Color(0.1638613, 0.16386127, 0.16386127, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mx8sn"]
+material = ExtResource("3_w8frs")
+size = Vector2(5, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w8frs"]
+material = ExtResource("3_w8frs")
+size = Vector2(1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ppgk2"]
+material = ExtResource("3_w8frs")
+size = Vector2(20, 1)
 
 [node name="Level" type="Node3D"]
 
@@ -67,7 +84,7 @@ transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -10)
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 9.397628)
 
 [node name="Mur3" parent="Environnement/Murs" instance=ExtResource("2_w7c3h")]
-transform = Transform3D(-8.742278e-07, 0, 1, 0, 1, 0, -20, 0, -4.371139e-08, 9.478408, 0.5, -0.0101492405)
+transform = Transform3D(-8.742278e-07, 0, 1, 0, 1, 0, -20, 0, -4.371139e-08, 9.478, 0.5, 0)
 
 [node name="Mur4" parent="Environnement/Murs" instance=ExtResource("2_w7c3h")]
 transform = Transform3D(-8.742278e-07, 0, 1, 0, 1, 0, -20, 0, -4.371139e-08, -9.866593, 0.5, -0.0101492405)
@@ -75,10 +92,65 @@ transform = Transform3D(-8.742278e-07, 0, 1, 0, 1, 0, -20, 0, -4.371139e-08, -9.
 [node name="Obstacles" type="Node3D" parent="Environnement"]
 
 [node name="Mur" parent="Environnement/Obstacles" instance=ExtResource("2_w7c3h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 5.075285)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 5)
 
 [node name="Mur2" parent="Environnement/Obstacles" instance=ExtResource("2_w7c3h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.800865, 0.5, -3.6275272)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, -3.5)
 
 [node name="Mur3" parent="Environnement/Obstacles" instance=ExtResource("2_w7c3h")]
-transform = Transform3D(3.535534, 0, 0.70710677, 0, 1, 0, -3.535534, 0, 0.70710677, 2.0536928, 0.5, -3.6275272)
+transform = Transform3D(3.535534, 0, 0.70710677, 0, 1, 0, -3.535534, 0, 0.70710677, 2, 0.5, -3.5)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 90.0
+offset_bottom = 90.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(360, 240)
+render_target_update_mode = 4
+
+[node name="MinimapCam" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 8.950335, 0)
+cull_mask = 524288
+environment = SubResource("Environment_w8frs")
+projection = 1
+size = 12.0
+
+[node name="Minimap" type="Node3D" parent="."]
+
+[node name="Obstacle1" type="MeshInstance3D" parent="Minimap"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 2, 0, -3.5)
+layers = 524288
+mesh = SubResource("PlaneMesh_mx8sn")
+
+[node name="Obstacle2" type="MeshInstance3D" parent="Minimap"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -5, 0, -3.5)
+layers = 524288
+mesh = SubResource("PlaneMesh_w8frs")
+
+[node name="Obstacle3" type="MeshInstance3D" parent="Minimap"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 5, 0, 5)
+layers = 524288
+mesh = SubResource("PlaneMesh_w8frs")
+
+[node name="Wall1" type="MeshInstance3D" parent="Minimap"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, -10)
+layers = 524288
+mesh = SubResource("PlaneMesh_ppgk2")
+
+[node name="Wall2" type="MeshInstance3D" parent="Minimap"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 9.398)
+layers = 524288
+mesh = SubResource("PlaneMesh_ppgk2")
+
+[node name="Wall3" type="MeshInstance3D" parent="Minimap"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 9.4, 0, 0)
+layers = 524288
+mesh = SubResource("PlaneMesh_ppgk2")
+
+[node name="Wall4" type="MeshInstance3D" parent="Minimap"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -9.891, 0, 0)
+layers = 524288
+mesh = SubResource("PlaneMesh_ppgk2")

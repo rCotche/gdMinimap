@@ -4,3 +4,33 @@ scroll zoom in/out
 
 maintient appuyer le clic droit et zqsd pou deplacer rotate en freemode
 et shift pour aller plus vite
+
+//////////////////////
+
+https://www.youtube.com/watch?v=H3U2AS45s1o
+
+4.5.1
+
+add node subviewportcontainer > inspector > contrôl > layout > Anchor preset = en haut a gauche
+inspector > control > transform > position ( x= 50px; y=50 px)
+
+add node subviewport > doit etre le child du subviewportcontainer > inspector > size x=360; y=240
+
+add node camera3d > child du subviewport
+
+//////////////////////
+
+add node 3d
+
+add node meshinstance child du node 3d > inspector > mesh > plane mesh > click on planemesh > set up the size to fit the size of obstacle > place it au mem endroit que l'obstacle
+
+inspector > click on planemesh > material (create a new or load an existing one) > if create: click on material > albedo > color = peu importe
+inspector > click on planemesh > material (create a new or load an existing one) > if create: click on material > shading > shading mode > unshaded
+
+select camera > inspector > projection > orthogonal
+select camera > inspector > size > 12
+select camera > inspector > environnement > new environnement > click on environnement > background > mode > custom color > dark color (not black, voir environnement_back_color_example.png)
+
+select camera > inspector > cull mask > unchecked all sauf le 20
+
+select meshinstance du node minimap > inspector > layer > check 20 & uncheck les autres
