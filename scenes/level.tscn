@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://4bhhh3xgdy85"]
+[gd_scene load_steps=16 format=3 uid="uid://4bhhh3xgdy85"]
 
 [ext_resource type="Script" uid="uid://eqkw58vjpe5i" path="res://scripts/player.gd" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://d0w7ewobv4lff" path="res://scenes/mur.tscn" id="2_w7c3h"]
+[ext_resource type="Script" uid="uid://dymt4e7v47swg" path="res://scripts/minimap_cam.gd" id="3_mx8sn"]
 [ext_resource type="Material" uid="uid://cuwk4rjt1m26s" path="res://materials/Minimap.tres" id="3_w8frs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
@@ -117,6 +118,7 @@ cull_mask = 524288
 environment = SubResource("Environment_w8frs")
 projection = 1
 size = 12.0
+script = ExtResource("3_mx8sn")
 
 [node name="Minimap" type="Node3D" parent="."]
 
