@@ -34,3 +34,17 @@ select camera > inspector > environnement > new environnement > click on environ
 select camera > inspector > cull mask > unchecked all sauf le 20
 
 select meshinstance du node minimap > inspector > layer > check 20 & uncheck les autres
+
+select player > add script
+
+select player > add node meshinstance > inpector > mesh > plane mesh > click on planemesh > set up the size to fit the size of player > place it au mem endroit que le player
+
+inspector > click on planemesh > material (create a new or load an existing one) > if create: click on material > albedo > color = peu importe
+inspector > click on planemesh > material (create a new or load an existing one) > if create: click on material > shading > shading mode > unshaded
+
+select meshinstance child du node player > inspector > layer > check 20 & uncheck les autres
+select meshinstance child du node player > inspector > transform > rotation > y=45
+
+select the main camera (celui du player pour moi) > inspector > cull mask > checked all sauf le 20
+
+select the minimap camera > script 
